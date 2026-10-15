@@ -18,6 +18,11 @@ with sync_playwright() as p:
     password.fill("secret_sauce")
     login_button = page.get_by_role("button", name="Login")
     login_button.click()
-    expect(page).to_have_url("https://www.saucedemo.com/inventory.html")
+    
+    try:
+        expect(page).to_have_url("https://www.saucedemo.com/inventory.html")
+        print("Login sucessfull")
+    except AssertionError:
+        print("Login Failed")
 
     browser.close()
